@@ -21,6 +21,12 @@ public class Rooms {
         this.categoryName = categoryName;
     }
 
+    public List<Prices> getPrices(){ 
+        return prices;
+    }
+    public void setPrices(List<Prices> prices){
+        this.prices = prices;
+    }
 }
 
 
