@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
-public class hotels {
+public class Hotels {
     private Integer id;
     private String name;
     private Integer cityCode;
