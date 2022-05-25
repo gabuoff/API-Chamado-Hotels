@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import java.math.BigDecimal;
 
-public class Prices {
+public class PriceDetail {
     private BigDecimal pricePerDayAdult;
     private BigDecimal pricePerDayChild;
 

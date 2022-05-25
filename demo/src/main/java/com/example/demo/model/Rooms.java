@@ -5,7 +5,7 @@ import java.util.List;
 public class Rooms {
     private Integer roomId;
     private String categoryName;
-    private List<Prices> prices;
+    private List<PriceDetail> priceDetail;
 
     public Integer getRoomId(){
         return roomId;
@@ -21,11 +21,11 @@ public class Rooms {
         this.categoryName = categoryName;
     }
 
-    public List<Prices> getPrices(){ 
-        return prices;
+    public List<PriceDetail> getPriceDetail(){ 
+        return priceDetail;
     }
-    public void setPrices(List<Prices> prices){
-        this.prices = prices;
+    public void setPriceDetail(List<PriceDetail> priceDetail){
+        this.priceDetail = priceDetail;
     }
 }
 
