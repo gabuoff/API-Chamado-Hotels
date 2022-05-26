@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.HotelsDTO;
+import com.example.demo.dto.HotelDTO;
 import com.example.demo.model.Travel;
 
 @RestController
@@ -20,11 +20,11 @@ public class CvcHotelController {
 	private PrincipalService principalService;
 	
 	@GetMapping(value = "/city")
-	public List<HotelsDTO> calcPerCity(@Valid Travel travel){
+	public List<HotelDTO> calcPerCity(@Valid Travel travel){
 		return travelService.cities(travel);
 	}
 	@GetMapping(value = "/hotel")
-	public List<HotelsDTO> calcPerHotel(@Valid Travel travel){
+	public List<HotelDTO> calcPerHotel(@Valid Travel travel){
 		return travelService.cities(travel);
 	}
 	

@@ -2,32 +2,32 @@ package com.example.demo.dto;
 
 import java.util.List;
 
-import com.example.demo.model.Rooms;
-
-public class HotelsDTO {
+public class HotelDTO {
     private Integer id;
     private String cityName;
-    private List<Rooms> rooms;
+    private List<RoomsDTO> rooms;
 
     public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
+		return id;
+	}
 
-    public String getCityName() {
-        return cityName;
-    }
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public List<Rooms> getRooms(){
-        return rooms;
-    };
+	public String getCityName() {
+		return cityName;
+	}
 
-    public void setRooms(List<Rooms> rooms){
-        this.rooms = rooms;
-    }
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public List<RoomsDTO> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<RoomsDTO> rooms) {
+		this.rooms = rooms;
+	}
 }
