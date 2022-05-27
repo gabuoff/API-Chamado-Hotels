@@ -1,4 +1,4 @@
-package br.com.cvc.corp.hotelaria.controllers;
+package com.example.demo.controller;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.HotelDTO;
 import com.example.demo.model.Hotel;
 import com.example.demo.service.ToBrokerService;
-import com.example.demo.service.imp.TravelService;
+import com.example.demo.service.imp.TravelImp;
 
 
 @CrossOrigin("*")
@@ -29,7 +29,7 @@ import com.example.demo.service.imp.TravelService;
 public class CvcHotelController {
 
 	@Autowired
-	private TravelService priceService;
+	private TravelImp priceService;
 	
 	@Autowired
     private ToBrokerService toBrokerService;

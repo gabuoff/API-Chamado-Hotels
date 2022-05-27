@@ -3,8 +3,6 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import com.example.demo.dto.HotelDTO;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -37,7 +37,7 @@ public class TravelImp implements ServiceImp{
 
 	    	List<HotelDTO> hotel = new ArrayList<HotelDTO>();
 
-	        travel.getTravelId().forEach(hotel -> {
+	        travel.getHotel().forEach(hotel -> {
 	            hotels.add(calcDetails(hotel));
 	        });
 
