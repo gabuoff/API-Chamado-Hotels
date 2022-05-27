@@ -5,8 +5,9 @@ import java.util.List;
 import com.example.demo.dto.HotelDTO;
 import com.example.demo.model.Hotel;
 
-public class ServiceImp {
-	 List<HotelDTO> calculateAvails();
+public interface ServiceImp {
 
-	    HotelDTO calculateDetails(final Hotel hotel);
+	List<HotelDTO> calcAvails();
+	
+	HotelDTO calcDetails(final Hotel hotel);
 }

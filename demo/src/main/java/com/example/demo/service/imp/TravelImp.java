@@ -1,94 +1,75 @@
-package com.example.demo.service;
-
-import static org.mockito.ArgumentMatchers.isNull;
-
+package com.example.demo.service.imp;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.ValidationException;
-
-import org.hibernate.validator.internal.util.logging.LoggerFactory;
-import org.jvnet.hk2.annotations.Service;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.HotelDTO;
+import com.example.demo.dto.PricesDetailDTO;
 import com.example.demo.dto.RoomsDTO;
 import com.example.demo.model.Hotel;
 import com.example.demo.model.Travel;
-
-import ch.qos.logback.classic.Logger;
+import com.example.demo.service.ServiceImp;
 
 @Service
-public class TravelService {
+public class TravelImp implements ServiceImp{
 	
-	 private static final Logger LOGGER = LoggerFactory.getLogger(PriceServiceImpl.class);
-
-	    private static final String MSG_EXCEPTION_REQUERID_ADULTS = "Adults field not menor zero";
-	    private static final String MSG_EXCEPTION_REQUERID_CHILDS = "Childs field not menor zero";
-	    private static final String MSG_EXCEPTION_REQUERID_CHECKIN = "Checkin field invalide";
-	    private static final String MSG_EXCEPTION_REQUERID_CHECKOUT = "Checkout field invalide";
-	    private static final String MSG_EXCEPTION_CHECKIN_BEFORE_TODAY = "Checkin is before Today";
-	    private static final String MSG_EXCEPTION_CHECKIN_AFTER_CHECKOUT = "Checkin is after Checkout";
-	    private static final double COMMISSION = 0.70;
-	    
-	    private Integer adults = 1;
-	    private Integer childs = 1;
-	    private Long diffDays = 1l;
+	    private double commission = 0.70;
+	    private Integer quantityOfAdults = 2;
+	    private Integer quantityOfchilds = 1;
+	    private Long days = 5l;
 	    private Travel travel;
 	    
-	    public PriceServiceImpl() {
+	    public TravelImp() {
 	    }
 
-	    public PriceServiceImpl(Travel pTravel) {
+	    public TravelImp(Travel pTravel) {
 	        travel = pTravel;
-	        validateObjectNotNull(pTravel);
 	    }
 
+	    
+	    
 	    @Override
-	    public List<HotelDTO> calculateAvails() {
-	        LOGGER.info("Begin of calculateAvails Total Prices");
-	        
-	        List<HotelDTO> hotels = new ArrayList<HotelDTO>();
+	    public  List<HotelDTO> calcAvails() {
 
-	        travel.getHotels().forEach(hotel -> {
-	            hotels.add(calculateDetails(hotel));
+
+	    	List<HotelDTO> hotel = new ArrayList<HotelDTO>();
+
+	        travel.getTravelId().forEach(hotel -> {
+	            hotels.add(calcDetails(hotel));
 	        });
-	        
-	        LOGGER.info("Final of calculateAvails Total Prices");
 
-	        return hotels;
+	        return hotel;
 	    }
 
-	    @Override
-	    public HotelDTO calculateDetails(Hotel hotel) {
-	        
-	        LOGGER.info("Begin of calculateDetails Total Prices");
+	    public HotelDTO calcDetails(HotelDTO hotel) {
 	        
 	        HotelDTO hotelDTO = new HotelDTO();
+	        
 	        hotelDTO.setId(hotel.getId());
 	        hotelDTO.setCityName(hotel.getCityName());
 
+	        
 	        List<RoomsDTO> rooms = new ArrayList<RoomsDTO>();
-	        hotel.getRooms().forEach(room -> {
+	        hotelDTO.getRooms().forEach(room -> {
 	            RoomsDTO roomsDTO = new RoomsDTO();
-	            roomsDTO.setRoomId(room.getRoomID());
+	            roomsDTO.setRoomId(room.getRoomId());
 	            roomsDTO.setCategoryName(room.getCategoryName());
 
-	            PriceDetailDTO priceDetailDTO = new PriceDetailDTO();
-	            priceDetailDTO.setPricePerDayAdult(new BigDecimal(room.getPrice().getAdult().doubleValue() * diffDays)
+	            PricesDetailDTO priceDetailDTO = new PricesDetailDTO();
+	            priceDetailDTO.setPricePerDayAdult(new BigDecimal(room.getPriceDetail().getPricePerDayAdult().doubleValue() * days)
 	                    .setScale(2, RoundingMode.HALF_EVEN));
-	            priceDetailDTO.setPricePerDayChild(new BigDecimal(room.getPrice().getChild().doubleValue() * diffDays)
+	            priceDetailDTO.setPricePerDayChild(new BigDecimal(room.getPriceDetail().getPricePerDayChild().doubleValue() * days)
 	                    .setScale(2, RoundingMode.HALF_EVEN));
 
 	            roomsDTO.setPriceDetail(priceDetailDTO);
 
 	            BigDecimal priceKickbackAdult = new BigDecimal(
-	                    (priceDetailDTO.getPricePerDayAdult().doubleValue() * adults) / COMMISSION);
+	                    (priceDetailDTO.getPricePerDayAdult().doubleValue() * quantityOfAdults) / commission);
 	            BigDecimal priceKickbackChilds = new BigDecimal(
-	                    (priceDetailDTO.getPricePerDayChild().doubleValue() * childs) / COMMISSION);
+	                    (priceDetailDTO.getPricePerDayChild().doubleValue() * quantityOfchilds) / commission);
 
 	            roomsDTO.setTotalPrice(priceKickbackAdult.add(priceKickbackChilds).setScale(2, RoundingMode.HALF_EVEN));
 
@@ -97,49 +78,17 @@ public class TravelService {
 
 	        hotelDTO.setRooms(rooms);
 	        
-	        LOGGER.info("Final of calculateDetails Total Prices");
-
 	        return hotelDTO;
 	    }
+
+		@Override
+		public HotelDTO calcDetails(Hotel hotel) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	    
-	    private void validateObjectNotNull(Travel pTravel) {
+	
 
-	        if (isNull(pTravel.getAdults()) || pTravel.getAdults() <= 0) {
-	            throw new ValidationException(MSG_EXCEPTION_REQUERID_ADULTS);
-	        }
-
-	        if (isNull(pTravel.getChilds()) || pTravel.getChilds() <= 0 ) {
-	            throw new ValidationException(MSG_EXCEPTION_REQUERID_CHILDS);
-	        }
-
-	        if (isNull(pTravel.getCheckin())) {
-	            throw new ValidationException(MSG_EXCEPTION_REQUERID_CHECKIN);
-	        }
-
-	        if (isNull(pTravel.getCheckout())) {
-	            throw new ValidationException(MSG_EXCEPTION_REQUERID_CHECKOUT);
-	        }
-
-	        adults = pTravel.getAdults();
-	        childs = pTravel.getChilds();
-
-	        validateCheckinIsBefore(pTravel.getCheckin(), pTravel.getCheckout());
-
-	        diffDays = ChronoUnit.DAYS.between(pTravel.getCheckin(), pTravel.getCheckout());
-
-	    }
-
-	    private void validateCheckinIsBefore(LocalDate checkin, LocalDate checkout) {
-	        LocalDate today = LocalDate.now();
-
-	        if (checkin.isBefore(today)) {
-	            throw new ValidationException(MSG_EXCEPTION_CHECKIN_BEFORE_TODAY);
-	        }
-
-	        if (checkin.isAfter(checkout)) {
-	            throw new ValidationException(MSG_EXCEPTION_CHECKIN_AFTER_CHECKOUT);
-	        }
-	    }
 }
 	
 	

@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1032,
+        "name": "Hotel Teste 1032",
+        "cityCode": 7110,
+        "cityName": "Rio de Janeiro",
+        "rooms": [
+            {
+                "roomID": 0,
+                "categoryName": "Standard",
+                "price": {
+                    "adult": 490.94,
+                    "child": 580.73
+                }
+            },
+            {
+                "roomID": 1,
+                "categoryName": "Luxo",
+                "price": {
+                    "adult": 293.76,
+                    "child": 519.42
+                }
+            },
+            {
+                "roomID": 2,
+                "categoryName": "Triplo",
+                "price": {
+                    "adult": 245.05,
+                    "child": 593.91
+                }
+            }
+        ]
+    }
+]
