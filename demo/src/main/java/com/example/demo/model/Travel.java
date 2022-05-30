@@ -16,7 +16,7 @@ public class Travel implements Serializable{
 	private Integer travelId;
 	private LocalDate checkIn;
 	private LocalDate checkOut;
-	private Integer quantityAdult;
+	private Integer quantityAdults;
 	private Integer quantityChild;
 
 	

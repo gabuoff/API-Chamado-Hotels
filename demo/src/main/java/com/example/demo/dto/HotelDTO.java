@@ -16,8 +16,9 @@ public class HotelDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 3475272990990463009L;
 	private Integer id;
+    private String name;
+    private Integer cityCode;
     private String cityName;
-    private List<RoomsDTO> rooms;
-
+    List<RoomsDTO> rooms;
   
 }
