@@ -3,9 +3,13 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Hotel implements Serializable {
     /**
 	 * 
@@ -16,31 +20,7 @@ public class Hotel implements Serializable {
     private Integer cityCode;
     private String cityName;
     List<Rooms> rooms;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Integer getCityCode() {
-		return cityCode;
-	}
-	public void setCityCode(Integer cityCode) {
-		this.cityCode = cityCode;
-	}
-	public String getCityName() {
-		return cityName;
-	}
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
   
 }
 

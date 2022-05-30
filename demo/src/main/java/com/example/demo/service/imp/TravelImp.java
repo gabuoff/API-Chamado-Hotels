@@ -16,9 +16,8 @@ import com.example.demo.service.ServiceImp;
 @Service
 public class TravelImp implements ServiceImp{
 	
-	    private double commission = 0.70;
-	    private Integer quantityOfAdults = 2;
-	    private Integer quantityOfchilds = 1;
+	    private Integer quantityAdults = 2;
+	    private Integer quantityChilds = 1;
 	    private Long days = 5l;
 	    private Travel travel;
 	    
@@ -37,14 +36,12 @@ public class TravelImp implements ServiceImp{
 
 	    	List<HotelDTO> hotel = new ArrayList<HotelDTO>();
 
-	        travel.getHotel().forEach(hotel -> {
-	            hotels.add(calcDetails(hotel));
-	        });
 
 	        return hotel;
 	    }
 
-	    public HotelDTO calcDetails(HotelDTO hotel) {
+		@Override
+	    public HotelDTO calcDetails(Hotel hotel) {
 	        
 	        HotelDTO hotelDTO = new HotelDTO();
 	        
@@ -53,6 +50,7 @@ public class TravelImp implements ServiceImp{
 
 	        
 	        List<RoomsDTO> rooms = new ArrayList<RoomsDTO>();
+	        
 	        hotelDTO.getRooms().forEach(room -> {
 	            RoomsDTO roomsDTO = new RoomsDTO();
 	            roomsDTO.setRoomId(room.getRoomId());
@@ -66,12 +64,12 @@ public class TravelImp implements ServiceImp{
 
 	            roomsDTO.setPriceDetail(priceDetailDTO);
 
-	            BigDecimal priceKickbackAdult = new BigDecimal(
-	                    (priceDetailDTO.getPricePerDayAdult().doubleValue() * quantityOfAdults) / commission);
-	            BigDecimal priceKickbackChilds = new BigDecimal(
-	                    (priceDetailDTO.getPricePerDayChild().doubleValue() * quantityOfchilds) / commission);
+	            BigDecimal priceAdult = new BigDecimal(
+	                    (priceDetailDTO.getPricePerDayAdult().doubleValue() * quantityAdults) / 0.70);
+	            BigDecimal priceChilds = new BigDecimal(
+	                    (priceDetailDTO.getPricePerDayChild().doubleValue() * quantityChilds) / 0.70);
 
-	            roomsDTO.setTotalPrice(priceKickbackAdult.add(priceKickbackChilds).setScale(2, RoundingMode.HALF_EVEN));
+	            roomsDTO.setTotalPrice(priceAdult.add(priceChilds).setScale(2, RoundingMode.HALF_EVEN));
 
 	            rooms.add(roomsDTO);
 	        });
@@ -81,13 +79,9 @@ public class TravelImp implements ServiceImp{
 	        return hotelDTO;
 	    }
 
-		@Override
-		public HotelDTO calcDetails(Hotel hotel) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	    
-	
+		
+
+		
 
 }
 	

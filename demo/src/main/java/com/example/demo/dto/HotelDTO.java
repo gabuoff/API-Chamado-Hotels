@@ -3,6 +3,13 @@ package com.example.demo.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class HotelDTO implements Serializable{
     /**
 	 * 
@@ -11,24 +18,6 @@ public class HotelDTO implements Serializable{
 	private Integer id;
     private String cityName;
     private List<RoomsDTO> rooms;
-	public String getCityName() {
-		return cityName;
-	}
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public List<RoomsDTO> getRooms() {
-		return rooms;
-	}
-	public void setRooms(List<RoomsDTO> rooms) {
-		this.rooms = rooms;
-	}
 
   
 }

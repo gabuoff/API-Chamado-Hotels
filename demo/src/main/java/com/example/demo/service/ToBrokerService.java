@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -34,7 +34,7 @@ public class ToBrokerService {
 	    }
 	    
 
-	    public List<Hotel> hotelsAvails(Integer codeCity) {
+	    public List<Hotel> hotelAvail(Integer codeCity) {
 	        
 	        final String uri = urlAvail.concat(codeCity.toString());
 	        ResponseEntity<ArrayList<Hotel>> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, null,
@@ -43,4 +43,9 @@ public class ToBrokerService {
 	        return responseEntity.getBody();
 
 	    }
+
+
+        public Hotel hotelDetails(@Valid Integer hotelId) {
+            return null;
+        }
 }
