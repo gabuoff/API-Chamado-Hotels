@@ -19,10 +19,10 @@ public class ToBrokerService {
 	    private RestTemplate restTemplate;
 
 
-	    @Value("${urlBrokerSeachHotels}")
+	    @Value(" https://cvcbackendhotel.herokuapp.com/hotels/avail/")
 	    private String urlHotels;
 	    
-	    @Value("${urlSeachBrokerAvail}")
+	    @Value("https://cvcbackendhotel.herokuapp.com/hotels/")
 	    private String urlAvail;
 
 	    public Hotel DetailsByHotel(Integer hotelId) {
