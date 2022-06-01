@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,8 +40,8 @@ public class CvcHotelController {
 	    @ResponseStatus(HttpStatus.OK)
 		public ResponseEntity<List<HotelDTO>> calcAvails(
 				@PathVariable("codeCity") @Valid Integer codeCity,
-				@RequestParam @Valid LocalDate dataCheckIn,
-				@RequestParam @Valid LocalDate dataCheckOut,
+				@RequestParam @Valid String dataCheckIn,
+				@RequestParam @Valid String dataCheckOut,
 				@RequestParam @Valid Integer adults, 
 				@RequestParam @Valid Integer childs) {
 	      
@@ -54,33 +53,18 @@ public class CvcHotelController {
 
 		}
 	
-
+//	    @GetMapping(path = "/calc-hotel/{hotelId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//	    @ResponseStatus(HttpStatus.OK)
+//	    public ResponseEntity<HotelDTO> calculate(@PathVariable("hotelId") @Valid Integer hotelId){
+////	    		
+//	    Hotel hotel = uriService.hotelDetails(hotelId);
+//	    HotelDTO hotelDTO = travelImp.calcDetails(hotel);
+////	    		
+//	    return ResponseEntity.ok(hotelDTO);
+//	    } 
 	
 }
-    //@GetMapping(path = "/Travel/{travelId}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.OK)
-//    public ResponseEntity<List<HotelDTO>> calcAvails(@PathVariable("codeCity") @Valid Integer codeCity,
-//    		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataCheckin,
-//    		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataCheckout,
-//			@RequestParam @Valid Integer adults, 
-//			@RequestParam @Valid Integer childs){
-//    			List<Hotel> hotelCVC = ApiService.hotelAvail(codeCity);
-//    			
-//    			priceService = new TravelImp(new Travel(dataCheckin, dataCheckout, adults, childs, hotelCVC));
-//    			
-//    			List<HotelDTO> hotels = priceService.calcAvails();
-//    			
-//    			return ResponseEntity.ok(hotels);
-//	}
-//	
-//    
-//    @GetMapping(path = "/Hotel/{hotelid}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.OK)
-//    public ResponseEntity<HotelDTO> calculate(@PathVariable("hotelid") @Valid Integer hotelId){
-//		
-//		Hotel hotel = ApiService.hotelDetails(hotelId);
-//		HotelDTO hotelDTO = priceService.calcDetails(hotel);
-//		
-//		return ResponseEntity.ok(hotelDTO);
-//	} 
+    
+  
+ 
     

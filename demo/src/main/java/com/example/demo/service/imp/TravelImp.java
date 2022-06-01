@@ -43,11 +43,13 @@ public class TravelImp implements ServiceImp{
 	        hotel.getRooms().forEach(room -> {
 	        	
 	            RoomsDTO roomsDTO = new RoomsDTO();
-	            roomsDTO.setRoomId(room.getRoomID());
+	            roomsDTO.setRoomId(room.getRoomId());
 	            roomsDTO.setCategoryName(room.getCategoryName());
 	            
 	            PricesDetailDTO pricesDetailDTO = new PricesDetailDTO();
-	            pricesDetailDTO.setPricePerDayAdult(new BigDecimal(room.getPriceDetail().getAdult().doubleValue() * Days).setScale(2, RoundingMode.HALF_EVEN));
+	            if(room.getPriceDetail().getAdult()!=null)
+	            	pricesDetailDTO.setPricePerDayAdult(new BigDecimal(room.getPriceDetail().getAdult().doubleValue() * Days).setScale(2, RoundingMode.HALF_EVEN));
+	           
 	            pricesDetailDTO.setPricePerDayChild(new BigDecimal(room.getPriceDetail().getChild().doubleValue() * Days).setScale(2, RoundingMode.HALF_EVEN));
 
 	            roomsDTO.setPricesDetail(pricesDetailDTO);
