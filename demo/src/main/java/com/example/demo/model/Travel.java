@@ -3,80 +3,41 @@ package com.example.demo.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class Travel{
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Travel{ 
 
-	@JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate checkin;
-
-    @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
-	private LocalDate checkout;
-	
-	private Integer adults;
-	
-	private Integer childs;
-	
+    @JsonProperty("hotel")
 	private List<Hotel> hotel;
-
-	public Travel() {}
+    @JsonProperty("checkIn")
+	private LocalDate checkIn;
+    @JsonProperty("checkOut")
+    private LocalDate checkOut;
+    @JsonProperty("adults")
+    private Integer adults;
+    @JsonProperty("children")
+    private Integer children;
+    
 	
-	public Travel(LocalDate pCheckin, LocalDate pCheckout, Integer pAdults, Integer pChilds, List<Hotel> pHotels) {
-		checkin = pCheckin;
-		checkout = pCheckout;
-		adults = pAdults;
-		childs = pChilds;
-		hotel = pHotels;
+	public Travel(LocalDate dataCheckin, LocalDate dataCheckout, Integer dataAdults, Integer dataChilds, List<Hotel> dataHotels) {
+		checkIn = dataCheckin;
+		checkIn = dataCheckout;
+		adults = dataAdults;
+		children = dataChilds;
+		hotel = dataHotels;
 	}
 
-	public LocalDate getCheckin() {
-		return checkin;
-	}
-
-	public void setCheckin(LocalDate checkin) {
-		this.checkin = checkin;
-	}
-
-	public LocalDate getCheckout() {
-		return checkout;
-	}
-
-	public void setCheckout(LocalDate checkout) {
-		this.checkout = checkout;
-	}
-
-	public Integer getAdults() {
-		return adults;
-	}
-
-	public void setAdults(Integer adults) {
-		this.adults = adults;
-	}
-
-	public Integer getChilds() {
-		return childs;
-	}
-
-	public void setChilds(Integer childs) {
-		this.childs = childs;
-	}
-
-	public List<Hotel> getHotels() {
-		return hotels;
-	}
-
-	public void setHotels(List<Hotel> hotels) {
-		this.hotels = hotels;
-	}
 
 
 	
