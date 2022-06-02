@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -32,9 +33,10 @@ import com.example.demo.service.imp.TravelImp;
 @RestController
 @RequestMapping(path = "/v1", produces = "application/json")
 public class CvcHotelController {
+
 	@Autowired
 	private TravelImp travelImp;
-
+	
 	@Autowired
     private UriService uriService;
 	
@@ -46,8 +48,8 @@ public class CvcHotelController {
 				@PathVariable("codeCity") @Valid Integer codeCity,
 				@RequestParam @Valid String dataCheckIn,
 				@RequestParam @Valid String dataCheckOut,
-				@RequestParam @Valid Integer adults, 
-				@RequestParam @Valid Integer childs) {
+				@RequestParam @Valid BigDecimal adults, 
+				@RequestParam @Valid BigDecimal childs) {
 		    		List<Hotel> hotelsCVC = uriService.tripAvails(codeCity);
 		    		
 		    		LocalDate checkInConverted = LocalDate.parse(dataCheckIn, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -61,14 +63,14 @@ public class CvcHotelController {
 
 		}
 	
-	    @GetMapping(path = "/calc-hotel/{hotelId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	    @ResponseStatus(HttpStatus.OK)
-	    public ResponseEntity<HotelDTO> calculate(@PathVariable("hotelId") @Valid Integer hotelId){	
-	    	Hotel hotel = uriService.hotelDetails(hotelId);
-	    	HotelDTO hotelDTO = travelImp.calcDetails(hotel);
-	    		
-	    	return ResponseEntity.ok(hotelDTO);
-	    } 
+//	    @GetMapping(path = "/calc-hotel/{hotelId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//	    @ResponseStatus(HttpStatus.OK)
+//	    public ResponseEntity<HotelDTO> calculate(@PathVariable("hotelId") @Valid Integer hotelId){	
+//	    	Hotel hotel = uriService.hotelDetails(hotelId);
+//	    	HotelDTO hotelDTO = travelImp.calcDetails(hotel);
+//	    		
+//	    	return ResponseEntity.ok(hotelDTO);
+//	    } 
 	    
 
 	   

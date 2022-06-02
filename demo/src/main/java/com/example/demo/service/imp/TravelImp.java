@@ -2,11 +2,10 @@ package com.example.demo.service.imp;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.example.demo.dto.HotelDTO;
 import com.example.demo.dto.PricesDetailDTO;
 import com.example.demo.dto.RoomsDTO;
@@ -21,7 +20,7 @@ public class TravelImp implements ServiceImp{
 
 		private Travel travel;
     
-    	private static final double COMMISSION = 0.70;    
+    	private static final BigDecimal COMMISSION = new BigDecimal(0.70);    
    
 	    public TravelImp() {
 	    }
@@ -29,24 +28,22 @@ public class TravelImp implements ServiceImp{
 	        travel =  dataTravel;
 	    }
 	    
-		private Integer adult = 1;
-	    private Integer child = 1;
-	    private long theDays = 1L;
+		private BigDecimal qtdDays = new BigDecimal(0);  
 	    
 	    @Override
 	    public List<HotelDTO> calcAvails() {
 	        List<HotelDTO> hotels = new ArrayList<HotelDTO>();
+	        	        
 	        travel.getHotel().forEach(hotel -> {
-	            hotels.add(calcDetails(hotel));
+	            hotels.add(calcDetails(hotel,travel.getCheckIn(),travel.getCheckOut(),travel.getAdults(),travel.getChildren()));
 	        });
 	         return hotels;
 	    }
-	    
 
-
-	    @Override
-	    public HotelDTO calcDetails(Hotel hotel) {
+	   @Override
+	    public HotelDTO calcDetails(Hotel hotel,LocalDate cheCkin,LocalDate cheCkout,BigDecimal adults, BigDecimal childs ) {
 	        HotelDTO hotelDTO = new HotelDTO();
+	        qtdDays=new BigDecimal(RangeOfDays.days(cheCkin, cheCkout));
 	        hotelDTO.setId(hotel.getId());
 	        hotelDTO.setCityName(hotel.getCityName());
 	        List<RoomsDTO> rooms = new ArrayList<RoomsDTO>();
@@ -57,13 +54,13 @@ public class TravelImp implements ServiceImp{
 	            roomsDTO.setCategoryName(room.getCategoryName());
 	            
 	            PricesDetailDTO pricesDetailDTO = new PricesDetailDTO();
-	           if(room.getPriceDetail().getAdult()!=null) {
-	            	pricesDetailDTO.setPricePerDayAdult(new BigDecimal(room.getPriceDetail().getAdult().doubleValue() * RangeOfDays.days(travel.getCheckIn(),travel.getCheckOut())).setScale(2, RoundingMode.HALF_EVEN));
-	            	pricesDetailDTO.setPricePerDayChild(new BigDecimal(room.getPriceDetail().getChild().doubleValue() * theDays).setScale(2, RoundingMode.HALF_EVEN));
-	           }
+		           if(room.getPriceDetail().getAdult()!=null) {
+		            	pricesDetailDTO.setPricePerDayAdult(room.getPriceDetail().getAdult().multiply(qtdDays).setScale(2, RoundingMode.HALF_EVEN));
+		            	pricesDetailDTO.setPricePerDayChild(room.getPriceDetail().getChild().multiply(qtdDays).setScale(2, RoundingMode.HALF_EVEN));
+		           }
 	            roomsDTO.setPricesDetail(pricesDetailDTO);
-	            BigDecimal pricePerAdult = new BigDecimal(pricesDetailDTO.getPricePerDayAdult().doubleValue() * adult / COMMISSION);
-	            BigDecimal pricePerChildren = new BigDecimal(pricesDetailDTO.getPricePerDayChild().doubleValue() * child / COMMISSION);
+	            BigDecimal pricePerAdult = pricesDetailDTO.getPricePerDayAdult().multiply(adults).divide(COMMISSION);
+	            BigDecimal pricePerChildren = pricesDetailDTO.getPricePerDayChild().multiply(childs).divide(COMMISSION);
 	           roomsDTO.setTotalPrice(pricePerAdult.add(pricePerChildren).setScale(2, RoundingMode.HALF_EVEN));
 	           
 	            rooms.add(roomsDTO);

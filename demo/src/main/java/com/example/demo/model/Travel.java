@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class Travel{
     @JsonProperty("checkOut")
     private LocalDate checkOut;
     @JsonProperty("adults")
-    private Integer adults;
+    private BigDecimal adults;
     @JsonProperty("children")
-    private Integer children;
+    private BigDecimal children;
     
 	
-	public Travel(LocalDate  checkInConverted, LocalDate  checkOutConverted, Integer dataAdults, Integer dataChilds, List<Hotel> dataHotels) {
+	public Travel(LocalDate  checkInConverted, LocalDate  checkOutConverted, BigDecimal dataAdults, BigDecimal dataChilds, List<Hotel> dataHotels) {
 		checkIn = checkInConverted;
 		checkIn = checkOutConverted;
 		adults = dataAdults;
