@@ -1,5 +1,9 @@
 package com.example.demo.controller;
 
+
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -44,25 +48,30 @@ public class CvcHotelController {
 				@RequestParam @Valid String dataCheckOut,
 				@RequestParam @Valid Integer adults, 
 				@RequestParam @Valid Integer childs) {
-	      
-		    List<Hotel> hotelsCVC = uriService.tripAvails(codeCity);
-		    travelImp = new TravelImp(new Travel(dataCheckIn, dataCheckOut, adults, childs, hotelsCVC));
-			List<HotelDTO> hotels = travelImp.calcAvails();
+		    		List<Hotel> hotelsCVC = uriService.tripAvails(codeCity);
+		    		
+		    		LocalDate checkInConverted = LocalDate.parse(dataCheckIn, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		    		LocalDate checkOutConverted = LocalDate.parse(dataCheckOut, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		    		
+		    		
+		    		travelImp = new TravelImp(new Travel(checkInConverted, checkOutConverted, adults, childs, hotelsCVC));
+		    		List<HotelDTO> hotels = travelImp.calcAvails();
 			
-			return ResponseEntity.ok(hotels);
+		    		return ResponseEntity.ok(hotels);
 
 		}
 	
-//	    @GetMapping(path = "/calc-hotel/{hotelId}", produces = MediaType.APPLICATION_JSON_VALUE)
-//	    @ResponseStatus(HttpStatus.OK)
-//	    public ResponseEntity<HotelDTO> calculate(@PathVariable("hotelId") @Valid Integer hotelId){
-////	    		
-//	    Hotel hotel = uriService.hotelDetails(hotelId);
-//	    HotelDTO hotelDTO = travelImp.calcDetails(hotel);
-////	    		
-//	    return ResponseEntity.ok(hotelDTO);
-//	    } 
-	
+	    @GetMapping(path = "/calc-hotel/{hotelId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	    @ResponseStatus(HttpStatus.OK)
+	    public ResponseEntity<HotelDTO> calculate(@PathVariable("hotelId") @Valid Integer hotelId){	
+	    	Hotel hotel = uriService.hotelDetails(hotelId);
+	    	HotelDTO hotelDTO = travelImp.calcDetails(hotel);
+	    		
+	    	return ResponseEntity.ok(hotelDTO);
+	    } 
+	    
+
+	   
 }
     
   

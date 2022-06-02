@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +19,7 @@ public class Rooms implements Serializable{
 	 */
 	private static final long serialVersionUID = -160391855426550256L;
 	
-	@JsonProperty("roomId")
+	@JsonProperty("roomID")
 	private Integer roomId;
 	@JsonProperty("categoryName")
 	private String categoryName;

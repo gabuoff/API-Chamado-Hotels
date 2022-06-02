@@ -21,18 +21,18 @@ public class Travel{
     @JsonProperty("hotel")
 	private List<Hotel> hotel;
     @JsonProperty("checkIn")
-	private String checkIn;
+	private LocalDate checkIn;
     @JsonProperty("checkOut")
-    private String checkOut;
+    private LocalDate checkOut;
     @JsonProperty("adults")
     private Integer adults;
     @JsonProperty("children")
     private Integer children;
     
 	
-	public Travel(String dataCheckin, String dataCheckout, Integer dataAdults, Integer dataChilds, List<Hotel> dataHotels) {
-		checkIn = dataCheckin;
-		checkIn = dataCheckout;
+	public Travel(LocalDate  checkInConverted, LocalDate  checkOutConverted, Integer dataAdults, Integer dataChilds, List<Hotel> dataHotels) {
+		checkIn = checkInConverted;
+		checkIn = checkOutConverted;
 		adults = dataAdults;
 		children = dataChilds;
 		hotel = dataHotels;

@@ -20,8 +20,8 @@ public class UriService {
     @Value("${urlAvail}")
     private String urlAvail;
 
-    @Value("${urlHotels}")
-    private String urlHotels;
+    @Value("${urlHotel}")
+    private String urlHotel;
 
     public List<Hotel> tripAvails(Integer codeCity) {
         
@@ -33,8 +33,8 @@ public class UriService {
 
     }
 
-    public Hotel hotelDetails(Integer idHotel) {
-        final String uri = urlHotels.concat(idHotel.toString());
+    public Hotel hotelDetails(Integer hotelId) {
+        final String uri = urlHotel.concat(hotelId.toString());
         ResponseEntity<ArrayList<Hotel>> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, null,
                         new ParameterizedTypeReference<ArrayList<Hotel>>() {});
 

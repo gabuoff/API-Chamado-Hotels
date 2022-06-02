@@ -16,7 +16,7 @@ public class TravelDTO implements Serializable{
 	private LocalDate checkin;
 	private LocalDate checkout;
 	private Integer adults;
-	private Integer childrens;
+	private Integer children;
 	
 
 	
