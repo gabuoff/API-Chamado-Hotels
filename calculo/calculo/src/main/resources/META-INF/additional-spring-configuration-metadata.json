@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "urlAvail",
+    "type": "java.lang.String",
+    "description": "A description for 'urlAvail'"
+  },
+  {
+    "name": "urlHotel",
+    "type": "java.lang.String",
+    "description": "A description for 'urlHotel'"
+  },
+  {
+    "name": "urlAvail",
+    "type": "java.lang.String",
+    "description": "A description for 'urlAvail'"
+  },
+  {
+    "name": "urlAvail",
+    "type": "java.lang.String",
+    "description": "A description for 'urlAvail'"
+  }
+]}
