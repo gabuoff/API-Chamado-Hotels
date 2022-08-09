@@ -1,6 +1,6 @@
 ### Teste-API
 
-a solução dos testes estarão na pasta "demo"
+O ambiente criado de acordo com o readme do teste está localizado na pasta *calculo*
 
 ***A API responde os seguintes ID_da_Cidade:***
 
