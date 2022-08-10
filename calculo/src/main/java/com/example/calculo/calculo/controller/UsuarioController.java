@@ -36,7 +36,7 @@ public class UsuarioController {
 	@Autowired
 	private ResponseService uriService;
 
-	@GetMapping(path = "/calc-avail/{codeCity}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/avail/{codeCity}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<List<HotelDTO>> calcAvailscalcAvails(
 			@PathVariable("codeCity") @Valid Integer codeCity,
@@ -56,7 +56,7 @@ public class UsuarioController {
 
 	}
 
-	@GetMapping(path = "/calc-hotel/{hotelId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/hotel/{hotelId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<HotelDTO> calculate(@PathVariable("hotelId") Integer hotelId) {
 		Hotel HotelTripAvails = uriService.avgHotelDetails(hotelId);
