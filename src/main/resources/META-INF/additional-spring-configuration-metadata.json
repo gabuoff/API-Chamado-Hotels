@@ -1,0 +1,62 @@
+{"properties": [
+  {
+    "name": "spring.datasource.maxActive",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.maxActive'"
+  },
+  {
+    "name": "spring.datasource.maxIdle",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.maxIdle'"
+  },
+  {
+    "name": "spring.datasource.minIdle",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.minIdle'"
+  },
+  {
+    "name": "spring.datasource.removeAbandoned",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.removeAbandoned'"
+  },
+  {
+    "name": "spring.datasource.initialSize",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.initialSize'"
+  },
+  {
+    "name": "spring.datasource.removeAbandoned",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.removeAbandoned'"
+  },
+  {
+    "name": "spring.datasource.removeAbandoned",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.removeAbandoned'"
+  },
+  {
+    "name": "spring.datasource.removeAbandoned",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.removeAbandoned'"
+  },
+  {
+    "name": "urlHotel",
+    "type": "java.lang.String",
+    "description": "A description for 'urlHotel'"
+  },
+  {
+    "name": "urlAvail",
+    "type": "java.lang.String",
+    "description": "A description for 'urlAvail'"
+  },
+  {
+    "name": "application",
+    "type": "java.lang.String",
+    "description": "A description for 'application'"
+  },
+  {
+    "name": "connectTimeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectTimeout'"
+  }
+]}

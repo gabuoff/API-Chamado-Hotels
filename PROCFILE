@@ -1,1 +1,1 @@
-web: java -Xms150M -jar target/wrapper/maven-wrapper.jar
+web: java -Xms150M -jar target/myapp.jar
